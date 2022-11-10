@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class NewsDAO {
 	final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -72,7 +76,7 @@ public void addNews(News n) throws Exception {
 		Connection conn = open();
 		
 		String sql ="insert into news(aid,title,img,regdate,content) "
-				  + " values(new_seq.nextval,?,?,sysdate,?)";
+				  + " values(news_seq.nextval,?,?,sysdate,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		try(conn; pstmt) {
